@@ -15,7 +15,7 @@ def shutdown_on_t():
                 global function_running
                 function_running = 0
                 sys.exit()  # Exit the program if 't' is pressed
-s
+
     # Create a thread for the check_for_t function
     t_thread = threading.Thread(target=check_for_t, daemon=True)
 
