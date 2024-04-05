@@ -22,7 +22,7 @@ def shutdown_on_t():
     # Start the thread
     t_thread.start()
 
-
+s
 # Test the function
 shutdown_on_t()
 
