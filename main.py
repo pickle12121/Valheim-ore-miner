@@ -3,8 +3,7 @@ import time
 import keyboard
 import threading
 import sys
-import pyscreeze
-from PIL import Image
+
 end = False
 def shutdown_on_t():
     def check_for_t():
@@ -26,23 +25,20 @@ def shutdown_on_t():
 # Test the function
 shutdown_on_t()
 
-
 function_running = False
+import detection as dec
 
+get, close = dec.load_mss()
 def is_mouse_on_black_pixel():
     global end
     if end:
         sys.exit()
 
-    # Get the current position of the mouse
-    mouse_x, mouse_y = pyautogui.position()
-
-    # Get the color of the pixel at the mouse position
-    pixel_color = pyautogui.pixel(mouse_x, mouse_y)
-
     global function_running
-    # Check if the pixel color is black (0, 0, 0) in RGB
-    if pixel_color == (0, 0, 0):
+    foundcopper = dec.heuristic_is_copper(get())
+
+
+    if foundcopper:
         if not function_running:
             function_running = True
             GotCopper()

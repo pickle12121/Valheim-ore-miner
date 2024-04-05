@@ -28,7 +28,7 @@ def heuristic_is_copper(image: Image.Image) -> bool:
 
     r, g, b = rgb.getpixel((center_x, offset_y))
 
-    if r <= 160 or g <= 160:
+    if r <= 160 or g <= 160 or b >= 160:
         # cursor is not yellow, not possible to be copper node
         return False
     else:
