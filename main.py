@@ -5,15 +5,15 @@ import threading
 import sys
 import pyscreeze
 from PIL import Image
-
+end = False
 def shutdown_on_t():
     def check_for_t():
         while True:
 
             if keyboard.is_pressed('t'):
                 print("Key 't' pressed. Shutting down the program.")
-                global function_running
-                function_running = 0
+                global end
+                end = True
                 sys.exit()  # Exit the program if 't' is pressed
 
     # Create a thread for the check_for_t function
@@ -22,7 +22,7 @@ def shutdown_on_t():
     # Start the thread
     t_thread.start()
 
-s
+
 # Test the function
 shutdown_on_t()
 
@@ -30,6 +30,10 @@ shutdown_on_t()
 function_running = False
 
 def is_mouse_on_black_pixel():
+    global end
+    if end:
+        sys.exit()
+
     # Get the current position of the mouse
     mouse_x, mouse_y = pyautogui.position()
 
